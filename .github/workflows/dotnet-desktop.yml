@@ -80,7 +80,16 @@ jobs:
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: dotnet test
-
+    
+   # upload test results
+    - name: Upload  Test results
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+         name: Unit Test Results
+         path: |
+          test-results/*.xml
+      
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
