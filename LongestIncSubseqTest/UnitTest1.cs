@@ -17,7 +17,7 @@ namespace LongestIncSubseqTest
         public void SolveTest1()
         {
             LongestIncSubseqApi.LongestIncSubseq obj = new LongestIncSubseqApi.LongestIncSubseq();
-            string input = "6 2 4 6 1";
+            string input = "6 2 4 6 1 1";
             string expected = "2 4 6";
 
             obj.Solve(Array.ConvertAll<string, int>(input.ToString().Split(' '), Convert.ToInt32));
