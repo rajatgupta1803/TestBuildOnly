@@ -79,19 +79,10 @@ jobs:
     - name: Execute unit tests
       run: dotnet test --logger trx --results-directory "TestResults${{ matrix.dotnet-version }}"
       
-     # Publish Unit test results
-    - name: Upload dotnet test results
-      uses: actions/upload-artifact@v2
-      if: always()
-      with:
-            name: dotnet-results-${{ matrix.dotnet-version }}
-            path: TestResults-${{ matrix.dotnet-version }}
-          
-    - name: Download a single artifact
-      uses: actions/download-artifact@v2 
-      with:
-       name: dotnet-results-${{ matrix.dotnet-version }}
-    
+    # Execute code coverage
+    - name: collect code coverage
+      run: dotnet test --collect "Code Coverage"
+      
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
