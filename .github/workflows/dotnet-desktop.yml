@@ -79,6 +79,13 @@ jobs:
     - name: Execute unit tests
       run: dotnet test
       
+     # Publish Unit test results
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action/composite@v1
+      if: always()
+      with:
+       files: test-results/**/*.xml
+      
       
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
