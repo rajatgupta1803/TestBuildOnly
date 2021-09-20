@@ -80,13 +80,12 @@ jobs:
       run: dotnet test --logger trx --results-directory "TestResults${{ matrix.dotnet-version }}"
       
      # Publish Unit test results
-    - name: Publish Unit Test Results
-      uses: zyborg/dotnet-tests-report@v1
+    - name: Upload dotnet test results
+      uses: actions/upload-artifact@v2
       if: always()
       with:
-       files: test-results/**/*.xml
-       name: dotnet-results-${{ matrix.dotnet-version }}
-       path: TestResults${{ matrix.dotnet-version }}
+            name: dotnet-results-${{ matrix.dotnet-version }}
+            path: TestResults-${{ matrix.dotnet-version }}
           
     - name: Download a single artifact
       uses: actions/download-artifact@v2 
