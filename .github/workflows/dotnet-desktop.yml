@@ -77,15 +77,17 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test
+      run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
       
      # Publish Unit test results
     - name: Publish Unit Test Results
-      uses: EnricoMi/publish-unit-test-result-action/composite@v1
+      uses: actions/upload-artifact@v2
       if: always()
       with:
        files: test-results/**/*.xml
-      
+       name: dotnet-results-${{ matrix.dotnet-version }}
+       path: TestResults-${{ matrix.dotnet-version }}
+          
       
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
