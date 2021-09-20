@@ -16,5 +16,9 @@
   <ItemGroup>
     <ProjectReference Include="..\LongestIncSubseq\LongestIncSubseqApi.csproj" />
   </ItemGroup>
+   <PropertyGroup>
+  <VSTestLogger>trx</VSTestLogger>
+  <VSTestResultsDirectory>C:\temp</VSTestResultsDirectory>
+</PropertyGroup>
 
 </Project>
