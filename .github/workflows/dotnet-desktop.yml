@@ -88,7 +88,11 @@ jobs:
        name: dotnet-results-${{ matrix.dotnet-version }}
        path: TestResults${{ matrix.dotnet-version }}
           
-      
+    - name: Download a single artifact
+      uses: actions/download-artifact@v2 
+      with:
+       name: dotnet-results-${{ matrix.dotnet-version }}
+    
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
